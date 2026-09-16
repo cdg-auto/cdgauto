@@ -37,7 +37,6 @@ header {
     align-items: center;
     padding: 15px 8%;
     
-    /* Proprietà 3D */
     perspective: 1000px;
     transform-style: preserve-3d;
     transition: transform 0.1s ease-out;
@@ -104,12 +103,24 @@ nav ul li a:hover {
 }
 
 .hero-content {
-    max-width: 550px;
+    max-width: 580px;
     z-index: 2;
 }
 
+.hero-tag {
+    display: inline-block;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
 .hero-content h1 {
-    font-size: 48px;
+    font-size: 46px;
     line-height: 1.1;
     font-weight: 800;
     margin-bottom: 15px;
@@ -123,6 +134,29 @@ nav ul li a:hover {
     color: var(--text-muted);
     margin-bottom: 25px;
     line-height: 1.5;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 8px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
 /* 3D LOGO EMBLEM DESIGN */
@@ -160,7 +194,7 @@ nav ul li a:hover {
 }
 
 .logo-emblem-icon {
-    font-size: 64px;
+    font-size: 60px;
     background: var(--accent-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -169,7 +203,7 @@ nav ul li a:hover {
 }
 
 .logo-emblem-text {
-    font-size: 36px;
+    font-size: 34px;
     font-weight: 800;
     letter-spacing: 2px;
     color: #fff;
@@ -180,16 +214,19 @@ nav ul li a:hover {
 }
 
 .logo-emblem-sub {
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     color: var(--text-muted);
     margin-top: 5px;
 }
 
-/* SHOWROOM SECTION */
-.showroom {
-    padding: 50px 8% 80px 8%;
+/* SEZIONE VANTAGGI IMPORTAZIONE */
+.import-features {
+    padding: 60px 8%;
+    background: rgba(21, 21, 30, 0.4);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .section-title {
@@ -206,6 +243,48 @@ nav ul li a:hover {
 .section-title p {
     color: var(--text-muted);
     font-size: 15px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+    border-radius: 14px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(59, 130, 246, 0.4);
+}
+
+.feature-card i {
+    font-size: 32px;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* SHOWROOM SECTION */
+.showroom {
+    padding: 60px 8%;
 }
 
 .car-grid {
@@ -346,5 +425,8 @@ footer {
     }
     nav ul {
         display: none;
+    }
+    .hero-buttons {
+        justify-content: center;
     }
 }
