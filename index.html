@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDG Auto - Showroom Esclusivo</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0b0b0f;
+            --card-bg: #15151e;
+            --accent: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* HEADER & NAVBAR */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(11, 11, 15, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--text-main);
+        }
+
+        .cta-btn {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
+        }
+
+        /* HERO SECTION 3D STYLE */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 100px 8% 40px 8%;
+            position: relative;
+            background: radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.12) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 550px;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, #9ca3af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        /* 3D LOGO EMBLEM DESIGN */
+        .hero-3d-visual {
+            position: relative;
+            width: 380px;
+            height: 380px;
+            perspective: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-3d-card {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(21, 21, 30, 0.9) 0%, rgba(11, 11, 15, 0.95) 100%);
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.7), 0 0 50px rgba(59, 130, 246, 0.15);
+            transform: rotateY(-12deg) rotateX(12deg);
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-3d-card:hover {
+            transform: rotateY(0deg) rotateX(0deg) scale(1.03);
+            border-color: rgba(59, 130, 246, 0.6);
+            box-shadow: 0 35px 70px rgba(0,0,0,0.8), 0 0 60px rgba(59, 130, 246, 0.3);
+        }
+
+        .logo-emblem-icon {
+            font-size: 64px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 5px 15px rgba(59, 130, 246, 0.4));
+        }
+
+        .logo-emblem-text {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        .logo-emblem-text span {
+            color: var(--accent);
+        }
+
+        .logo-emblem-sub {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* SHOWROOM SECTION */
+        .showroom {
+            padding: 50px 8% 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        /* 3D Car Card Effect */
+        .car-card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transform-style: preserve-3d;
+        }
+
+        .car-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .car-card:hover .car-image {
+            transform: scale(1.05);
+        }
+
+        .car-image-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .car-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .car-details {
+            padding: 20px;
+        }
+
+        .car-details h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .car-specs {
+            display: flex;
+            gap: 12px;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .car-specs span i {
+            margin-right: 4px;
+            color: var(--accent);
+        }
+
+        .car-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 12px;
+        }
+
+        .car-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .btn-details {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .btn-details:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #07070a;
+            border-top: 1px solid var(--border-color);
+            padding: 30px 8%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width: 968px) {
+            .hero {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding-top: 110px;
+                min-height: auto;
+                padding-bottom: 40px;
+            }
+            .hero-content {
+                margin-bottom: 30px;
+            }
+            .hero-3d-visual {
+                width: 280px;
+                height: 280px;
+            }
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">CDG<span>Auto</span>.it</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#showroom">Showroom</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+        </nav>
+        <a href="#showroom" class="cta-btn">Scopri Auto</a>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Il Futuro dell'Auto di Lusso</h1>
+            <p>Benvenuti su cdgauto.it. Scopri la nostra selezione esclusiva di vetture BMW e Mercedes certificate, garantite e pronte per emozionarti.</p>
+            <a href="#showroom" class="cta-btn">Esplora il Parco Auto</a>
+        </div>
+        <!-- LOGO 3D ISPIRATO AL NOME -->
+        <div class="hero-3d-visual">
+            <div class="logo-3d-card">
+                <i class="fa-solid fa-gauge-high logo-emblem-icon"></i>
+                <div class="logo-emblem-text">CDG<span>AUTO</span></div>
+                <div class="logo-emblem-sub">Excellence Hub</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOWROOM SECTION (AVVICINATA IN PRIMA PAGINA) -->
+    <section class="showroom" id="showroom">
+        <div class="section-title">
+            <h2>Showroom in Evidenza</h2>
+            <p>Le migliori occasioni BMW e Mercedes selezionate per te</p>
+        </div>
+
+        <div class="car-grid">
+            
+            <!-- Auto 1: BMW -->
+            <div class="car-card">
+                <div class="car-image-container">
+                    <span class="car-badge">BMW</span>
+                    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80" alt="BMW M4 Competition" class="car-image">
+                </div>
+                <div class="car-details">
+                    <h3>BMW M4 Competition</h3>
+                    <div class="car-specs">
+                        <span><i class="fa-solid fa-calendar"></i> 2023</span>
+                        <span><i class="fa-solid fa-gauge"></i> 12.000 km</span>
+                        <span><i class="fa-solid fa-gas-pump"></i> Benzina</span>
+                    </div>
+                    <div class="car-footer">
+                        <div class="car-price">€ 89.900</div>
+                        <a href="#" class="btn-details">Dettagli</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Auto 2: Mercedes -->
+            <div class="car-card">
+                <div class="car-image-container">
+                    <span class="car-badge">Mercedes-Benz</span>
+                    <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80" alt="Mercedes AMG GT" class="car-image">
+                </div>
+                <div class="car-details">
+                    <h3>Mercedes-AMG GT Coupé</h3>
+                    <div class="car-specs">
+                        <span><i class="fa-solid fa-calendar"></i> 2022</span>
+                        <span><i class="fa-solid fa-gauge"></i> 18.500 km</span>
+                        <span><i class="fa-solid fa-gas-pump"></i> Benzina</span>
+                    </div>
+                    <div class="car-footer">
+                        <div class="car-price">€ 114.500</div>
+                        <a href="#" class="btn-details">Dettagli</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Auto 3: BMW -->
+            <div class="car-card">
+                <div class="car-image-container">
+                    <span class="car-badge">BMW</span>
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80" alt="BMW Serie 4" class="car-image">
+                </div>
+                <div class="car-details">
+                    <h3>BMW i4 M50</h3>
+                    <div class="car-specs">
+                        <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                        <span><i class="fa-solid fa-gauge"></i> 5.000 km</span>
+                        <span><i class="fa-solid fa-bolt"></i> Elettrica</span>
+                    </div>
+                    <div class="car-footer">
+                        <div class="car-price">€ 72.000</div>
+                        <a href="#" class="btn-details">Dettagli</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Auto 4: Mercedes -->
+            <div class="car-card">
+                <div class="car-image-container">
+                    <span class="car-badge">Mercedes-Benz</span>
+                    <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80" alt="Mercedes Classe A" class="car-image">
+                </div>
+                <div class="car-details">
+                    <h3>Mercedes Classe A 200</h3>
+                    <div class="car-specs">
+                        <span><i class="fa-solid fa-calendar"></i> 2023</span>
+                        <span><i class="fa-solid fa-gauge"></i> 24.000 km</span>
+                        <span><i class="fa-solid fa-gas-pump"></i> Ibrida</span>
+                    </div>
+                    <div class="car-footer">
+                        <div class="car-price">€ 36.900</div>
+                        <a href="#" class="btn-details">Dettagli</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contatti">
+        <p>&copy; 2026 cdgauto.it - Tutti i diritti riservati. Showroom autorizzato BMW e Mercedes.</p>
+    </footer>
+
+</body>
+</html>
