@@ -293,7 +293,7 @@ nav ul li a:hover {
     gap: 25px;
 }
 
-/* 3D Car Card Effect */
+/* Car Card Effect */
 .car-card {
     background: var(--card-bg);
     border-radius: 14px;
@@ -301,7 +301,6 @@ nav ul li a:hover {
     border: 1px solid var(--border-color);
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transform-style: preserve-3d;
 }
 
 .car-card:hover {
@@ -386,7 +385,6 @@ nav ul li a:hover {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    text-decoration: none;
     font-size: 13px;
 }
 
@@ -394,6 +392,66 @@ nav ul li a:hover {
     background: var(--accent);
     border-color: var(--accent);
     color: #fff;
+}
+
+/* STILE MENU A TENDINA DETTAGLI AUTO */
+.car-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.3s ease;
+    background: rgba(11, 11, 15, 0.6);
+    border-top: 0px solid var(--border-color);
+    padding: 0 20px;
+}
+
+.car-dropdown-content h4 {
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.car-dropdown-content ul {
+    list-style: none;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.car-dropdown-content ul li {
+    margin-bottom: 5px;
+}
+
+.car-dropdown-content ul li i {
+    color: var(--accent);
+    margin-right: 6px;
+}
+
+.cta-dropdown-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: var(--accent-gradient);
+    color: #fff;
+    padding: 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    transition: opacity 0.3s ease;
+}
+
+.cta-dropdown-btn:hover {
+    opacity: 0.9;
+}
+
+/* Quando la tendina è aperta tramite JS, aggiungiamo padding e bordo */
+.car-dropdown-content[style*="max-height:"] {
+    padding: 15px 20px;
+    border-top: 1px solid var(--border-color);
 }
 
 /* FOOTER */
