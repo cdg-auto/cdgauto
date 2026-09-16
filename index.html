@@ -34,79 +34,75 @@
             overflow-x: hidden;
         }
 
-      /* HEADER & NAVBAR CON EFFETTO 3D */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: rgba(11, 11, 15, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 8%;
-    
-    /* Proprietà 3D */
-    perspective: 1000px;
-    transform-style: preserve-3d;
-    transition: transform 0.1s ease-out;
-}
+        /* HEADER & NAVBAR CON EFFETTO 3D */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(11, 11, 15, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            
+            /* Proprietà 3D */
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
 
-.logo {
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    color: #fff;
-    /* Spinge il logo in fuori in 3D */
-    transform: translateZ(30px);
-}
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+            transform: translateZ(30px);
+        }
 
-.logo span {
-    color: var(--accent);
-}
+        .logo span {
+            color: var(--accent);
+        }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 25px;
-    /* Spinge leggermente in fuori anche il menu */
-    transform: translateZ(15px);
-}
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            transform: translateZ(15px);
+        }
 
-nav ul li a {
-    text-decoration: none;
-    color: var(--text-muted);
-    font-weight: 500;
-    font-size: 15px;
-    transition: color 0.3s ease;
-}
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
 
-nav ul li a:hover {
-    color: var(--text-main);
-}
+        nav ul li a:hover {
+            color: var(--text-main);
+        }
 
-.cta-btn {
-    background: var(--accent-gradient);
-    color: white;
-    padding: 8px 20px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
-    
-    /* Spinge il pulsante ancora più in fuori per un effetto tridimensionale marcato */
-    transform: translateZ(35px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        .cta-btn {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+            transform: translateZ(35px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.cta-btn:hover {
-    transform: translateY(-2px) translateZ(40px);
-    box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
-}
+        .cta-btn:hover {
+            transform: translateY(-2px) translateZ(40px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
+        }
 
         /* HERO SECTION 3D STYLE */
         .hero {
@@ -369,8 +365,7 @@ nav ul li a:hover {
 <body>
 
     <!-- HEADER -->
-<header id="header-3d">
-    <div class="header-container">
+    <header id="header-3d">
         <div class="logo">CDG<span>Auto</span>.it</div>
         <nav>
             <ul>
@@ -380,8 +375,7 @@ nav ul li a:hover {
             </ul>
         </nav>
         <a href="#showroom" class="cta-btn">Scopri Auto</a>
-    </div>
-</header>
+    </header>
 
     <!-- HERO SECTION -->
     <section class="hero" id="home">
@@ -400,7 +394,7 @@ nav ul li a:hover {
         </div>
     </section>
 
-    <!-- SHOWROOM SECTION (AVVICINATA IN PRIMA PAGINA) -->
+    <!-- SHOWROOM SECTION -->
     <section class="showroom" id="showroom">
         <div class="section-title">
             <h2>Showroom in Evidenza</h2>
@@ -497,5 +491,24 @@ nav ul li a:hover {
         <p>&copy; 2026 cdgauto.it - Tutti i diritti riservati. Showroom autorizzato BMW e Mercedes.</p>
     </footer>
 
+    <!-- SCRIPT PER L'EFFETTO 3D DEL MOUSE SULL'HEADER -->
+    <script>
+        const header = document.querySelector('header');
+
+        document.addEventListener('mousemove', (e) => {
+            const xPos = (window.innerWidth / 2 - e.clientX) / 50;
+            const yPos = (window.innerHeight / 2 - e.clientY) / 50;
+            header.style.transform = `rotateY(${-xPos}deg) rotateX(${yPos}deg)`;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            header.style.transform = `rotateY(0deg) rotateX(0deg)`;
+            header.style.transition = 'transform 0.5s ease-in-out';
+        });
+
+        header.addEventListener('mouseenter', () => {
+            header.style.transition = 'transform 0.1s ease-out';
+        });
+    </script>
 </body>
 </html>
