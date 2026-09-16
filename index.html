@@ -38,7 +38,7 @@
                 <a href="#importazione" class="btn-secondary">Il Nostro Metodo</a>
             </div>
         </div>
-        <!-- LOGO 3D ISPIRATO AL NOME -->
+        <!-- LOGO 3D -->
         <div class="hero-3d-visual">
             <div class="logo-3d-card">
                 <i class="fa-solid fa-car-tunnel logo-emblem-icon"></i>
@@ -97,8 +97,19 @@
                     </div>
                     <div class="car-footer">
                         <div class="car-price">€ 89.900</div>
-                        <a href="#" class="btn-details">Dettagli</a>
+                        <button class="btn-details" onclick="toggleDetails(this)">Dettagli</button>
                     </div>
+                </div>
+                <!-- Menu a tendina dei dettagli nascosto -->
+                <div class="car-dropdown-content">
+                    <h4>Specifiche di Importazione</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Provenienza: Rete Ufficiale Monaco di Baviera</li>
+                        <li><i class="fa-solid fa-check"></i> Cambio: Automatico Steptronic 8 rapporti</li>
+                        <li><i class="fa-solid fa-check"></i> Garanzia: Ufficiale Casa Madre residua</li>
+                        <li><i class="fa-solid fa-check"></i> Consegna stimata: 10-15 giorni lavorativi</li>
+                    </ul>
+                    <a href="#contatti" class="cta-dropdown-btn">Richiedi Info / Prenota</a>
                 </div>
             </div>
 
@@ -117,8 +128,19 @@
                     </div>
                     <div class="car-footer">
                         <div class="car-price">€ 114.500</div>
-                        <a href="#" class="btn-details">Dettagli</a>
+                        <button class="btn-details" onclick="toggleDetails(this)">Dettagli</button>
                     </div>
+                </div>
+                <!-- Menu a tendina dei dettagli nascosto -->
+                <div class="car-dropdown-content">
+                    <h4>Specifiche di Importazione</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Provenienza: Mercedes-Benz Stoccarda</li>
+                        <li><i class="fa-solid fa-check"></i> Pacchetto AMG Performance integrato</li>
+                        <li><i class="fa-solid fa-check"></i> Tagliandi eseguiti esclusivamente in officina autorizzata</li>
+                        <li><i class="fa-solid fa-check"></i> Immatricolazione italiana inclusa nel prezzo</li>
+                    </ul>
+                    <a href="#contatti" class="cta-dropdown-btn">Richiedi Info / Prenota</a>
                 </div>
             </div>
 
@@ -137,8 +159,19 @@
                     </div>
                     <div class="car-footer">
                         <div class="car-price">€ 72.000</div>
-                        <a href="#" class="btn-details">Dettagli</a>
+                        <button class="btn-details" onclick="toggleDetails(this)">Dettagli</button>
                     </div>
+                </div>
+                <!-- Menu a tendina dei dettagli nascosto -->
+                <div class="car-dropdown-content">
+                    <h4>Specifiche di Importazione</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Batteria con certificato di efficienza al 100%</li>
+                        <li><i class="fa-solid fa-check"></i> Trazione integrale xDrive</li>
+                        <li><i class="fa-solid fa-check"></i> Cerchi in lega da 20" M aerodinamici</li>
+                        <li><i class="fa-solid fa-check"></i> Sdoganamento e collaudo inclusi</li>
+                    </ul>
+                    <a href="#contatti" class="cta-dropdown-btn">Richiedi Info / Prenota</a>
                 </div>
             </div>
 
@@ -157,8 +190,19 @@
                     </div>
                     <div class="car-footer">
                         <div class="car-price">€ 36.900</div>
-                        <a href="#" class="btn-details">Dettagli</a>
+                        <button class="btn-details" onclick="toggleDetails(this)">Dettagli</button>
                     </div>
+                </div>
+                <!-- Menu a tendina dei dettagli nascosto -->
+                <div class="car-dropdown-content">
+                    <h4>Specifiche di Importazione</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Allestimento Premium AMG Line</li>
+                        <li><i class="fa-solid fa-check"></i> Display widescreen e pacchetto luci ambient</li>
+                        <li><i class="fa-solid fa-check"></i> Unico proprietario, non fumatore</li>
+                        <li><i class="fa-solid fa-check"></i> Pronta consegna in sede</li>
+                    </ul>
+                    <a href="#contatti" class="cta-dropdown-btn">Richiedi Info / Prenota</a>
                 </div>
             </div>
 
@@ -170,8 +214,9 @@
         <p>&copy; 2026 cdgauto.it - Specializzati nell'importazione diretta di vetture di lusso dalla Germania.</p>
     </footer>
 
-    <!-- SCRIPT PER L'EFFETTO 3D DEL MOUSE SULL'HEADER -->
+    <!-- JAVASCRIPT PER EFFETTO 3D E APERTURA MENU A TENDINA -->
     <script>
+        // Effetto 3D Header
         const header = document.querySelector('header');
 
         document.addEventListener('mousemove', (e) => {
@@ -188,6 +233,29 @@
         header.addEventListener('mouseenter', () => {
             header.style.transition = 'transform 0.1s ease-out';
         });
+
+        // Funzione per aprire/chiudere il menu a tendina dei dettagli auto
+        function toggleDetails(button) {
+            const card = button.closest('.car-card');
+            const dropdown = card.querySelector('.car-dropdown-content');
+            
+            // Chiude eventuali altri menu aperti (opzionale, per pulizia)
+            document.querySelectorAll('.car-dropdown-content').forEach(item => {
+                if(item !== dropdown) {
+                    item.style.maxHeight = null;
+                    item.previousElementSibling.querySelector('.btn-details').textContent = "Dettagli";
+                }
+            });
+
+            // Apre o chiude il menu corrente
+            if (dropdown.style.maxHeight) {
+                dropdown.style.maxHeight = null;
+                button.textContent = "Dettagli";
+            } else {
+                dropdown.style.maxHeight = dropdown.scrollHeight + "px";
+                button.textContent = "Chiudi";
+            }
+        }
     </script>
 </body>
 </html>
