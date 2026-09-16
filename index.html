@@ -34,67 +34,79 @@
             overflow-x: hidden;
         }
 
-        /* HEADER & NAVBAR */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(11, 11, 15, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 8%;
-        }
+      /* HEADER & NAVBAR CON EFFETTO 3D */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(11, 11, 15, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    
+    /* Proprietà 3D */
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+}
 
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: #fff;
-        }
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #fff;
+    /* Spinge il logo in fuori in 3D */
+    transform: translateZ(30px);
+}
 
-        .logo span {
-            color: var(--accent);
-        }
+.logo span {
+    color: var(--accent);
+}
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    /* Spinge leggermente in fuori anche il menu */
+    transform: translateZ(15px);
+}
 
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-weight: 500;
-            font-size: 15px;
-            transition: color 0.3s ease;
-        }
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
 
-        nav ul li a:hover {
-            color: var(--text-main);
-        }
+nav ul li a:hover {
+    color: var(--text-main);
+}
 
-        .cta-btn {
-            background: var(--accent-gradient);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+.cta-btn {
+    background: var(--accent-gradient);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+    
+    /* Spinge il pulsante ancora più in fuori per un effetto tridimensionale marcato */
+    transform: translateZ(35px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
-        }
+.cta-btn:hover {
+    transform: translateY(-2px) translateZ(40px);
+    box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
+}
 
         /* HERO SECTION 3D STYLE */
         .hero {
@@ -368,13 +380,14 @@
             </ul>
         </nav>
         <a href="#showroom" class="cta-btn">Scopri Auto</a>
-    </header>
+    </div>
+</header>
 
     <!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Il Futuro dell'Auto di Lusso</h1>
-            <p>Benvenuti su cdgauto.it. Scopri la nostra selezione esclusiva di vetture </p>
+            <p>Benvenuti su cdgauto.it. Scopri la nostra selezione esclusiva di vetture BMW e Mercedes certificate, garantite e pronte per emozionarti.</p>
             <a href="#showroom" class="cta-btn">Esplora il Parco Auto</a>
         </div>
         <!-- LOGO 3D ISPIRATO AL NOME -->
