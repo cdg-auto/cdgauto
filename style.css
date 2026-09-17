@@ -488,3 +488,76 @@ footer {
         justify-content: center;
     }
 }
+
+/* STILE SEZIONE CONTATTI / FOOTER AGGIORNATO */
+.contact-footer {
+    background: #07070a;
+    border-top: 1px solid var(--border-color);
+    padding: 50px 8% 30px 8%;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.contact-footer .section-title {
+    margin-bottom: 25px;
+}
+
+.contact-footer .section-title h2 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.contact-footer .section-title p {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.contact-info-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 15px 30px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.contact-info-card:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 5px 20px rgba(59, 130, 246, 0.15);
+    transform: translateY(-2px);
+}
+
+.contact-info-card i {
+    font-size: 20px;
+    color: var(--accent);
+}
+
+.contact-info-card a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+.contact-info-card a:hover {
+    color: var(--accent);
+}
+
+.footer-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border-color);
+    margin: 20px 0;
+}
+
+.footer-copy {
+    font-size: 13px;
+    color: var(--text-muted);
+}
