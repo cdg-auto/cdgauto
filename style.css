@@ -612,3 +612,18 @@ footer {
     text-transform: uppercase;
     letter-spacing: -0.5px;
 }
+
+/* Stile per il contenitore del logo con immagine */
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transform: translateZ(30px);
+}
+
+/* Regolazione delle dimensioni dell'immagine del logo */
+.site-logo {
+    height: 40px; /* Modifica l'altezza in base alle proporzioni del tuo logo */
+    width: auto;  /* Mantiene le proporzioni originali larghezza/altezza */
+    object-fit: contain;
+}
