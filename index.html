@@ -124,7 +124,10 @@
         <p class="footer-copy">&copy; 2026 cdgauto.it - Specializzati nell'importazione diretta di vetture di lusso dalla Germania.</p>
     </footer>
 
-    <!-- JAVASCRIPT PER EFFETTO 3D, APERTURA MENU E PASSAGGIO AUTO AL FORM -->
+   <!-- Includi prima il database delle auto -->
+    <script src="cars.js"></script>
+
+    <!-- JAVASCRIPT PER EFFETTO 3D, APERTURA MENU E CARICAMENTO AUTO -->
     <script>
         // Effetto 3D Header
         const header = document.querySelector('header');
@@ -144,12 +147,54 @@
             header.style.transition = 'transform 0.1s ease-out';
         });
 
+        // Funzione di caricamento dinamico delle auto da cars.js
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.getElementById('car-grid-container');
+            if (!container || typeof carDatabase === 'undefined') return;
+
+            let htmlContent = "";
+
+            carDatabase.forEach(car => {
+                let specsList = car.specs.map(spec => `<li><i class="fa-solid fa-check"></i> ${spec}</li>`).join("");
+
+                htmlContent += `
+                    <div class="car-card">
+                        <div class="car-image-container">
+                            <span class="car-badge">${car.badge}</span>
+                            <img src="${car.image}" alt="${car.name}" class="car-image">
+                        </div>
+                        <div class="car-details">
+                            <h3>${car.name}</h3>
+                            <div class="car-specs">
+                                <span><i class="fa-solid fa-calendar"></i> ${car.year}</span>
+                                <span><i class="fa-solid fa-gauge"></i> ${car.km}</span>
+                                <span><i class="fa-solid ${car.fuelIcon}"></i> ${car.fuel}</span>
+                            </div>
+                            <div class="car-footer">
+                                <div class="car-price">${car.price}</div>
+                                <button class="btn-details" onclick="toggleDetails(this)">Dettagli</button>
+                            </div>
+                        </div>
+                        <div class="car-dropdown-content">
+                            <h4>Specifiche di Importazione</h4>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Provenienza: ${car.provenance}</li>
+                                ${specsList}
+                            </ul>
+                            <a href="#contatti" class="cta-dropdown-btn" onclick="selezionaAuto('${car.name}')">Richiedi Info / Prenota</a>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = htmlContent;
+        });
+
         // Funzione per aprire/chiudere il menu a tendina dei dettagli auto
         function toggleDetails(button) {
             const card = button.closest('.car-card');
             const dropdown = card.querySelector('.car-dropdown-content');
             
-            // Chiude eventuali altri menu aperti
             document.querySelectorAll('.car-dropdown-content').forEach(item => {
                 if(item !== dropdown) {
                     item.style.maxHeight = null;
@@ -157,7 +202,6 @@
                 }
             });
 
-            // Apre o chiude il menu corrente
             if (dropdown.style.maxHeight) {
                 dropdown.style.maxHeight = null;
                 button.textContent = "Dettagli";
@@ -173,52 +217,5 @@
             inputVeicolo.value = nomeAuto;
         }
     </script>
-    <!-- Includi il database delle auto -->
-<script src="cars.js"></script>
-
-<script>
-    // Funzione per generare le card dello showroom in automatico
-    document.addEventListener("DOMContentLoaded", () => {
-        const container = document.getElementById('car-grid-container');
-        if (!container) return;
-
-        let htmlContent = "";
-
-        carDatabase.forEach(car => {
-            let specsList = car.specs.map(spec => `<li><i class="fa-solid fa-check"></i> ${spec}</li>`).join("");
-
-            htmlContent += `
-                <div class="car-card">
-                    <div class="car-image-container">
-                        <span class="car-badge">${car.badge}</span>
-                        <img src="${car.image}" alt="${car.name}" class="car-image">
-                    </div>
-                    <div class="car-details">
-                        <h3>${car.name}</h3>
-                        <div class="car-specs">
-                            <span><i class="fa-solid fa-calendar"></i> ${car.year}</span>
-                            <span><i class="fa-solid fa-gauge"></i> ${car.km}</span>
-                            <span><i class="fa-solid fa${car.fuelIcon.startsWith('-') ? car.fuelIcon : '-' + car.fuelIcon}"></i> ${car.fuel}</span>
-                        </div>
-                        <div class="car-footer">
-                            <div class="car-price">${car.price}</div>
-                            <button class="btn-details" onclick="toggleDetails(this)">Dettagli</button>
-                        </div>
-                    </div>
-                    <div class="car-dropdown-content">
-                        <h4>Specifiche di Importazione</h4>
-                        <ul>
-                            <li><i class="fa-solid fa-check"></i> Provenienza: ${car.provenance}</li>
-                            ${specsList}
-                        </ul>
-                        <a href="#contatti" class="cta-dropdown-btn" onclick="selezionaAuto('${car.name}')">Richiedi Info / Prenota</a>
-                    </div>
-                </div>
-            `;
-        });
-
-        container.innerHTML = htmlContent;
-    });
-</script>
 </body>
 </html>
