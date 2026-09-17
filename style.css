@@ -226,10 +226,11 @@ nav ul li a:hover {
 
 /* Stile per l'immagine del logo dentro la card 3D */
 .hero-card-logo {
-    width: 90px;
-    height: auto;
+    width: 60%;          /* Occupa il 60% della larghezza del riquadro (puoi regolarlo tra 50% e 75%) */
+    max-height: 140px;   /* Imposta un limite massimo di altezza per evitare che diventi enorme */
+    height: auto;        /* Mantiene le proporzioni originali */
     object-fit: contain;
-    margin-bottom: 15px;
+    margin-bottom: 15px; /* Spazio tra il logo e la scritta CDG AUTO sotto */
     filter: drop-shadow(0 5px 15px rgba(14, 165, 233, 0.3));
 }
 
