@@ -590,20 +590,7 @@ footer {
     color: var(--text-muted);
 }
 
-/* Applichiamo il font squadrato e tecnico al logo */
-.logo {
-    font-family: 'Orbitron', sans-serif; /* Font geometrico/futuristico */
-    font-size: 26px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    color: #fff;
-    transform: translateZ(30px);
-    text-transform: uppercase;
-}
 
-.logo span {
-    color: var(--accent);
-}
 
 /* Se vuoi dare un tocco squadrato anche ai titoli principali delle sezioni */
 .section-title h2, 
@@ -613,17 +600,33 @@ footer {
     letter-spacing: -0.5px;
 }
 
-/* Stile per il contenitore del logo con immagine */
+/* Contenitore flessibile per immagine e scritta del logo */
 .logo-link {
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    gap: 12px; /* Spazio tra l'immagine e la scritta */
     text-decoration: none;
     transform: translateZ(30px);
 }
 
-/* Regolazione delle dimensioni dell'immagine del logo */
+/* Dimensioni dell'immagine del logo */
 .site-logo {
-    height: 40px; /* Modifica l'altezza in base alle proporzioni del tuo logo */
-    width: auto;  /* Mantiene le proporzioni originali larghezza/altezza */
+    height: 38px; /* Regola l'altezza in base al tuo file */
+    width: auto;
     object-fit: contain;
+}
+
+/* Manteniamo lo stile squadrato e moderno per la scritta */
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0; /* Rimuove margini indesiderati */
+}
+
+.logo span {
+    color: var(--accent);
 }
