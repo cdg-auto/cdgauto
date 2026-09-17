@@ -46,11 +46,31 @@ header {
     transition: transform 0.1s ease-out;
 }
 
+/* Contenitore flessibile per immagine e scritta del logo */
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Spazio tra l'immagine e la scritta */
+    text-decoration: none;
+    transform: translateZ(30px);
+}
+
+/* Dimensioni dell'immagine del logo */
+.site-logo {
+    height: 38px; /* Regola l'altezza in base al tuo file */
+    width: auto;
+    object-fit: contain;
+}
+
+/* Stile squadrato e moderno per la scritta del logo */
 .logo {
+    font-family: 'Orbitron', sans-serif; /* Font geometrico/futuristico */
     font-size: 24px;
-    font-weight: 800;
-    letter-spacing: 1px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
     color: #fff;
+    text-transform: uppercase;
+    margin: 0; /* Rimuove margini indesiderati */
     transform: translateZ(30px);
 }
 
@@ -81,13 +101,14 @@ nav ul li a:hover {
     background: var(--accent-gradient);
     color: white;
     padding: 10px 22px;
-    border-radius: 6px; /* Bordi più squadrati e professionali rispetto ai cerchi pieni */
+    border-radius: 6px; /* Bordi più squadrati e professionali */
     text-decoration: none;
     font-weight: 600;
     font-size: 14px;
     box-shadow: 0 4px 20px var(--accent-glow);
     transform: translateZ(35px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap; /* Impedisce al testo del pulsante di andare a capo */
 }
 
 .cta-btn:hover {
@@ -133,6 +154,9 @@ nav ul li a:hover {
     background: linear-gradient(to right, #fff, #94a3b8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-family: 'Rajdhani', sans-serif; /* Stile squadrato e imponente */
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
 }
 
 .hero-content p {
@@ -214,6 +238,7 @@ nav ul li a:hover {
     font-weight: 800;
     letter-spacing: 2px;
     color: #fff;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .logo-emblem-text span {
@@ -246,6 +271,8 @@ nav ul li a:hover {
     font-weight: 800;
     margin-bottom: 10px;
     letter-spacing: -0.5px;
+    font-family: 'Rajdhani', sans-serif; /* Stile squadrato */
+    text-transform: uppercase;
 }
 
 .section-title p {
@@ -472,31 +499,6 @@ footer {
     font-size: 13px;
 }
 
-/* RESPONSIVE */
-@media(max-width: 968px) {
-    .hero {
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        padding-top: 130px;
-        min-height: auto;
-        padding-bottom: 50px;
-    }
-    .hero-content {
-        margin-bottom: 40px;
-    }
-    .hero-3d-visual {
-        width: 280px;
-        height: 280px;
-    }
-    nav ul {
-        display: none;
-    }
-    .hero-buttons {
-        justify-content: center;
-    }
-}
-
 /* --- STILE SEZIONE CONTATTI / MODULO --- */
 .contact-section {
     background-color: #080c14;
@@ -590,43 +592,48 @@ footer {
     color: var(--text-muted);
 }
 
-
-
-/* Se vuoi dare un tocco squadrato anche ai titoli principali delle sezioni */
-.section-title h2, 
-.hero-content h1 {
-    font-family: 'Rajdhani', sans-serif; /* Stile squadrato e imponente ideale per auto */
-    text-transform: uppercase;
-    letter-spacing: -0.5px;
+/* RESPONSIVE */
+@media(max-width: 968px) {
+    .hero {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding-top: 130px;
+        min-height: auto;
+        padding-bottom: 50px;
+    }
+    .hero-content {
+        margin-bottom: 40px;
+    }
+    .hero-3d-visual {
+        width: 280px;
+        height: 280px;
+    }
+    nav ul {
+        display: none;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
 }
 
-/* Contenitore flessibile per immagine e scritta del logo */
-.logo-link {
-    display: flex;
-    align-items: center;
-    gap: 12px; /* Spazio tra l'immagine e la scritta */
-    text-decoration: none;
-    transform: translateZ(30px);
-}
-
-/* Dimensioni dell'immagine del logo */
-.site-logo {
-    height: 38px; /* Regola l'altezza in base al tuo file */
-    width: auto;
-    object-fit: contain;
-}
-
-/* Manteniamo lo stile squadrato e moderno per la scritta */
-.logo {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 24px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    color: #fff;
-    text-transform: uppercase;
-    margin: 0; /* Rimuove margini indesiderati */
-}
-
-.logo span {
-    color: var(--accent);
+/* OTTIMIZZAZIONE LOGO E PULSANTE SU TELEFONO */
+@media (max-width: 768px) {
+    header {
+        padding: 14px 5%;
+    }
+    .site-logo {
+        height: 30px;
+    }
+    .logo {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+    .logo-link {
+        gap: 8px;
+    }
+    .cta-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
 }
