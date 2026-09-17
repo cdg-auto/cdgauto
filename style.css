@@ -622,8 +622,11 @@ footer {
     header {
         padding: 14px 5%;
     }
-    .site-logo {
-        height: 30px;
+.site-logo {
+    height: 48px; /* Portata da 38px a 48px (o più, es. 55px) */
+    width: auto;
+    object-fit: contain;
+
     }
     .logo {
         font-size: 18px;
