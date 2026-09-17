@@ -489,75 +489,93 @@ footer {
     }
 }
 
-/* STILE SEZIONE CONTATTI / FOOTER AGGIORNATO */
-.contact-footer {
-    background: #07070a;
-    border-top: 1px solid var(--border-color);
-    padding: 50px 8% 30px 8%;
-    text-align: center;
-    color: var(--text-muted);
+/* --- STILE SEZIONE CONTATTI / MODULO --- */
+.contact-section {
+    background-color: #0b0f19; /* Assicura lo sfondo scuro coerente */
+    padding: 80px 20px;
+    color: #ffffff;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.contact-footer .section-title {
-    margin-bottom: 25px;
+.contact-form-container {
+    max-width: 700px;
+    margin: 40px auto 0 auto;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
 }
 
-.contact-footer .section-title h2 {
-    font-size: 26px;
-    font-weight: 800;
-    color: #fff;
+.car-contact-form .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.car-contact-form label {
+    font-size: 0.95rem;
+    font-weight: 600;
     margin-bottom: 8px;
+    color: #cbd5e1;
 }
 
-.contact-footer .section-title p {
-    font-size: 14px;
-    color: var(--text-muted);
-}
-
-.contact-info-card {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    padding: 15px 30px;
-    border-radius: 50px;
-    margin-bottom: 30px;
+.car-contact-form input,
+.car-contact-form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #ffffff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
     transition: all 0.3s ease;
 }
 
-.contact-info-card:hover {
-    border-color: rgba(59, 130, 246, 0.4);
-    box-shadow: 0 5px 20px rgba(59, 130, 246, 0.15);
+.car-contact-form input:focus,
+.car-contact-form textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+.car-contact-form input::placeholder,
+.car-contact-form textarea::placeholder {
+    color: #64748b;
+}
+
+.car-contact-form input[readonly] {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #93c5fd;
+    cursor: not-allowed;
+}
+
+.submit-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: #2563eb;
     transform: translateY(-2px);
 }
 
-.contact-info-card i {
-    font-size: 20px;
-    color: var(--accent);
-}
-
-.contact-info-card a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 16px;
-    letter-spacing: 0.5px;
-    transition: color 0.3s ease;
-}
-
-.contact-info-card a:hover {
-    color: var(--accent);
-}
-
-.footer-divider {
-    width: 100%;
-    height: 1px;
-    background: var(--border-color);
-    margin: 20px 0;
-}
-
 .footer-copy {
-    font-size: 13px;
-    color: var(--text-muted);
+    text-align: center;
+    margin-top: 50px;
+    font-size: 0.85rem;
+    color: #64748b;
 }
