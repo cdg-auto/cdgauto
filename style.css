@@ -50,27 +50,27 @@ header {
 .logo-link {
     display: flex;
     align-items: center;
-    gap: 12px; /* Spazio tra l'immagine e la scritta */
+    gap: 12px;
     text-decoration: none;
     transform: translateZ(30px);
 }
 
 /* Dimensioni dell'immagine del logo */
 .site-logo {
-    height: 38px; /* Regola l'altezza in base al tuo file */
+    height: 38px;
     width: auto;
     object-fit: contain;
 }
 
 /* Stile squadrato e moderno per la scritta del logo */
 .logo {
-    font-family: 'Orbitron', sans-serif; /* Font geometrico/futuristico */
+    font-family: 'Orbitron', sans-serif;
     font-size: 24px;
     font-weight: 900;
     letter-spacing: 1.5px;
     color: #fff;
     text-transform: uppercase;
-    margin: 0; /* Rimuove margini indesiderati */
+    margin: 0;
     transform: translateZ(30px);
 }
 
@@ -101,14 +101,14 @@ nav ul li a:hover {
     background: var(--accent-gradient);
     color: white;
     padding: 10px 22px;
-    border-radius: 6px; /* Bordi più squadrati e professionali */
+    border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
     font-size: 14px;
     box-shadow: 0 4px 20px var(--accent-glow);
     transform: translateZ(35px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    white-space: nowrap; /* Impedisce al testo del pulsante di andare a capo */
+    white-space: nowrap;
 }
 
 .cta-btn:hover {
@@ -154,7 +154,7 @@ nav ul li a:hover {
     background: linear-gradient(to right, #fff, #94a3b8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-family: 'Rajdhani', sans-serif; /* Stile squadrato e imponente */
+    font-family: 'Rajdhani', sans-serif;
     text-transform: uppercase;
     letter-spacing: -0.5px;
 }
@@ -224,13 +224,12 @@ nav ul li a:hover {
     box-shadow: 0 35px 70px rgba(0,0,0,0.9), 0 0 50px rgba(14, 165, 233, 0.2);
 }
 
-/* Stile per l'immagine del logo dentro la card 3D */
 .hero-card-logo {
-    width: 60%;          /* Occupa il 60% della larghezza del riquadro (puoi regolarlo tra 50% e 75%) */
-    max-height: 140px;   /* Imposta un limite massimo di altezza per evitare che diventi enorme */
-    height: auto;        /* Mantiene le proporzioni originali */
+    width: 60%;
+    max-height: 140px;
+    height: auto;
     object-fit: contain;
-    margin-bottom: 15px; /* Spazio tra il logo e la scritta CDG AUTO sotto */
+    margin-bottom: 15px;
     filter: drop-shadow(0 5px 15px rgba(14, 165, 233, 0.3));
 }
 
@@ -272,7 +271,7 @@ nav ul li a:hover {
     font-weight: 800;
     margin-bottom: 10px;
     letter-spacing: -0.5px;
-    font-family: 'Rajdhani', sans-serif; /* Stile squadrato */
+    font-family: 'Rajdhani', sans-serif;
     text-transform: uppercase;
 }
 
@@ -319,84 +318,121 @@ nav ul li a:hover {
     line-height: 1.6;
 }
 
-/* SHOWROOM SECTION */
+/* SHOWROOM SECTION (Migliorata e graficamente curata) */
 .showroom {
-    padding: 80px 8%;
+    padding: 100px 8%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.showroom .section-title h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
 }
 
 .car-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
 }
 
-/* Car Card Effect */
 .car-card {
     background: var(--card-bg);
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
     border: 1px solid var(--border-color);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s ease;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.45);
+    transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
 }
 
 .car-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(14, 165, 233, 0.15);
+    box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65), 0 0 30px rgba(14, 165, 233, 0.18);
     border-color: var(--border-hover);
-}
-
-.car-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.car-card:hover .car-image {
-    transform: scale(1.04);
 }
 
 .car-image-container {
     overflow: hidden;
     position: relative;
+    height: 220px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.car-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.car-card:hover .car-image {
+    transform: scale(1.06);
 }
 
 .car-badge {
     position: absolute;
-    top: 12px;
-    left: 12px;
-    background: rgba(8, 12, 20, 0.8);
+    top: 15px;
+    left: 15px;
+    background: rgba(8, 12, 20, 0.85);
     backdrop-filter: blur(8px);
-    padding: 5px 12px;
-    border-radius: 4px;
+    padding: 6px 14px;
+    border-radius: 6px;
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--success);
-    border: 1px solid rgba(16, 185, 129, 0.3);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    z-index: 2;
 }
 
 .car-details {
-    padding: 22px;
+    padding: 24px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .car-details h3 {
-    font-size: 18px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 22px;
     font-weight: 700;
-    margin-bottom: 10px;
+    color: #fff;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
 }
 
 .car-specs {
     display: flex;
-    gap: 15px;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    padding: 12px 15px;
     color: var(--text-muted);
     font-size: 13px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
+}
+
+.car-specs span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .car-specs span i {
-    margin-right: 5px;
     color: var(--accent);
+    font-size: 14px;
 }
 
 .car-footer {
@@ -404,20 +440,24 @@ nav ul li a:hover {
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid var(--border-color);
-    padding-top: 15px;
+    padding-top: 16px;
+    margin-top: auto;
 }
 
 .car-price {
-    font-size: 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 21px;
     font-weight: 800;
-    color: #fff;
+    background: linear-gradient(135deg, #fff 0%, #0ea5e9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .btn-details {
     background: transparent;
     color: var(--text-main);
     border: 1px solid var(--border-color);
-    padding: 7px 16px;
+    padding: 8px 16px;
     border-radius: 6px;
     font-weight: 600;
     cursor: pointer;
@@ -426,25 +466,26 @@ nav ul li a:hover {
 }
 
 .btn-details:hover {
-    background: var(--accent);
+    background: rgba(14, 165, 233, 0.1);
     border-color: var(--accent);
-    color: #fff;
+    color: var(--accent);
 }
 
-/* STILE MENU A TENDINA DETTAGLI AUTO */
+/* STILE MENU A TENDINA DETTAGLI AUTO (Perfetto e reattivo) */
 .car-dropdown-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease-out, padding 0.3s ease;
-    background: rgba(8, 12, 20, 0.7);
+    background: rgba(6, 9, 15, 0.95);
     border-top: 0px solid var(--border-color);
-    padding: 0 22px;
+    padding: 0 24px;
+    border-radius: 0 0 16px 16px;
 }
 
 .car-dropdown-content h4 {
     font-size: 13px;
     color: var(--accent);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -453,16 +494,18 @@ nav ul li a:hover {
     list-style: none;
     font-size: 13px;
     color: var(--text-muted);
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .car-dropdown-content ul li {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .car-dropdown-content ul li i {
-    color: var(--success); /* Spunte verdi per indicare conformità e sicurezza */
-    margin-right: 8px;
+    color: var(--success);
 }
 
 .cta-dropdown-btn {
@@ -471,22 +514,24 @@ nav ul li a:hover {
     text-align: center;
     background: var(--accent-gradient);
     color: #fff;
-    padding: 10px;
+    padding: 11px;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
     font-size: 13px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     box-shadow: 0 4px 15px var(--accent-glow);
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .cta-dropdown-btn:hover {
-    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+    opacity: 0.95;
 }
 
 .car-dropdown-content[style*="max-height:"] {
-    padding: 18px 22px;
+    padding: 20px 24px;
     border-top: 1px solid var(--border-color);
 }
 
@@ -618,16 +663,14 @@ footer {
     }
 }
 
-/* OTTIMIZZAZIONE LOGO E PULSANTE SU TELEFONO */
 @media (max-width: 768px) {
     header {
         padding: 14px 5%;
     }
-.site-logo {
-    height: 48px; /* Portata da 38px a 48px (o più, es. 55px) */
-    width: auto;
-    object-fit: contain;
-
+    .site-logo {
+        height: 48px;
+        width: auto;
+        object-fit: contain;
     }
     .logo {
         font-size: 18px;
