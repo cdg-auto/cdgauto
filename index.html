@@ -24,11 +24,11 @@
             background-color: var(--bg-color, #0b0f19);
         }
 
-        /* ICONE SOCIAL FISSE IN BASSO A DESTRA (MENO LUMINOSE / PIÙ ELEGANTI) */
+        /* ICONE SOCIAL FISSE SPOSTATE PIÙ A DESTRA */
         .social-floating-container {
             position: fixed;
             bottom: 30px;
-            right: 30px;
+            right: 15px; /* Spostate ancora più vicino al bordo destro */
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -49,7 +49,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* WhatsApp: tonalità più sobria e meno luminosa */
+        /* WhatsApp: tonalità sobria e meno luminosa */
         .social-icon-btn.whatsapp {
             background: #1faf55;
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -62,7 +62,7 @@
             transform: scale(1.08) translateY(-2px);
         }
 
-        /* Instagram: gradiente più tenue e meno acceso */
+        /* Instagram: gradiente tenue e meno acceso */
         .social-icon-btn.instagram {
             background: linear-gradient(135deg, #c13584, #bc2a8d, #833ab4);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -80,7 +80,7 @@
 <!-- SFONDO PARTICELLARE DINAMICO RIDOTTO -->
 <canvas id="alien-particles"></canvas>
 
-<!-- ICONE SOCIAL FISSE (MENO LUMINOSE) NELL'ANGOLO A DESTRA -->
+<!-- ICONE SOCIAL FISSE SPOSTATE A DESTRA -->
 <div class="social-floating-container">
     <!-- Sostituisci il link con il tuo numero WhatsApp (es. wa.me/393400000000) -->
     <a href="https://wa.me/390000000000" target="_blank" class="social-icon-btn whatsapp" title="Scrivici su WhatsApp">
