@@ -28,7 +28,7 @@
         .social-floating-container {
             position: fixed;
             bottom: 30px;
-            right: 15px; /* Spostate ancora più vicino al bordo destro */
+            right: 15px; /* Spostate vicino al bordo destro */
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -73,6 +73,15 @@
             box-shadow: 0 0 15px rgba(193, 53, 132, 0.4);
             transform: scale(1.08) translateY(-2px);
         }
+
+        /* MODIFICA PER SPOSTARE LA HERO PIÙ IN ALTO */
+        .hero {
+            padding-top: 80px !important; /* Riduce lo spazio vuoto superiore */
+            margin-top: 0 !important;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -109,7 +118,7 @@
     <a href="#showroom" class="cta-btn">Scopri Auto</a>
 </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION (SPOSTATA PIÙ IN ALTO) -->
     <section class="hero" id="home">
         <div class="hero-content">
             <span class="hero-tag"><i class="fa-solid fa-flag"></i> Specialisti in Importazione Diretta</span>
@@ -120,7 +129,7 @@
                 <a href="#importazione" class="btn-secondary">Il Nostro Metodo</a>
             </div>
         </div>
-<!-- LOGO 3D -->
+        <!-- LOGO 3D -->
         <div class="hero-3d-visual">
             <div class="logo-3d-card">
                 <img src="logo.png" alt="CDGAuto Logo" class="hero-card-logo">
