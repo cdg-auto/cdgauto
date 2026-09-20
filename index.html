@@ -27,10 +27,10 @@
 </head>
 <body>
 
-<!-- SFONDO PARTICELLARE DINAMICO AVANZATO -->
+<!-- SFONDO PARTICELLARE DINAMICO RIDOTTO -->
 <canvas id="alien-particles"></canvas>
 
-<!-- HEADER -->
+<!-- HEADER (Senza effetto movimento mouse) -->
 <header id="header-3d">
     <a href="#home" class="logo-link">
         <img src="logo.png" alt="CDGAuto.it Logo" class="site-logo">
@@ -61,13 +61,13 @@
 <!-- LOGO 3D -->
         <div class="hero-3d-visual">
             <div class="logo-3d-card">
-                <!-- Sostituita l'icona con la tua immagine del logo -->
                 <img src="logo.png" alt="CDGAuto Logo" class="hero-card-logo">
                 <div class="logo-emblem-text">CDG<span>AUTO</span></div>
                 <div class="logo-emblem-sub">Direct Germany Import</div>
             </div>
         </div>
     </section>
+
     <!-- SEZIONE VANTAGGI IMPORTAZIONE -->
     <section class="import-features" id="importazione">
         <div class="section-title">
@@ -112,9 +112,7 @@
         </div>
         
         <div class="contact-form-container">
-            <!-- Utilizziamo un servizio gratuito come FormSubmit per recapitare i dati direttamente alla tua email configurata con Cloudflare -->
             <form action="https://formsubmit.co/info@cdgauto.it" method="POST" class="car-contact-form">
-                <!-- Disattiva il captcha fastidioso di formsubmit se desideri un invio pulito -->
                 <input type="hidden" name="_captcha" value="false">
                 
                 <div class="form-group">
@@ -144,12 +142,11 @@
         <p class="footer-copy">&copy; 2026 cdgauto.it - info@cdgauto.it</p>
     </footer>
 
-   <!-- Includi prima il database delle auto -->
+   <!-- Database delle auto -->
     <script src="cars.js"></script>
 
-    <!-- JAVASCRIPT PER EFFETTO PARTICELLE ALIENE AVANZATO & ESPLOSIONI -->
+    <!-- JAVASCRIPT PER SFONDO PARTICELLARE RIDOTTO -->
     <script>
-        // --- EFFETTO SFONDO PARTICELLARE SCI-FI / ESPLOSIONI VERDE ACIDO ---
         const canvas = document.getElementById('alien-particles');
         const ctx = canvas.getContext('2d');
 
@@ -162,26 +159,25 @@
 
         let particlesArray = [];
         let explosionsArray = [];
-        const numberOfParticles = 85; // Aumentate per maggiore densità
+        const numberOfParticles = 40; // Ridotte da 85 a 40 per un look più pulito
 
         const mouse = {
             x: null,
             y: null,
-            radius: 150
+            radius: 120
         }
 
         window.addEventListener('mousemove', (e) => {
             mouse.x = e.clientX;
             mouse.y = e.clientY;
             
-            // Crea micro-esplosioni al passaggio rapido del mouse
-            if (Math.random() < 0.3) {
+            // Frequenza ridotta per le micro-esplosioni al passaggio del mouse
+            if (Math.random() < 0.1) {
                 createExplosion(mouse.x, mouse.y);
             }
         });
 
         window.addEventListener('click', (e) => {
-            // Esplosione intensa al click ovunque nella pagina
             createExplosion(e.clientX, e.clientY, true);
         });
 
@@ -190,15 +186,13 @@
             mouse.y = null;
         });
 
-        // Classe per le particelle fluttuanti di sfondo
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2.2 + 0.8;
-                this.speedX = (Math.random() - 0.5) * 1.0;
-                this.speedY = (Math.random() - 0.5) * 1.0;
-                // Alternanza di colori tra azzurro tech e verde acido
+                this.size = Math.random() * 2 + 0.8;
+                this.speedX = (Math.random() - 0.5) * 0.6;
+                this.speedY = (Math.random() - 0.5) * 0.6;
                 this.colorType = Math.random();
             }
             update() {
@@ -214,32 +208,30 @@
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 if (this.colorType > 0.6) {
-                    ctx.fillStyle = '#10b981'; // Verde acido brillante
-                    ctx.shadowBlur = 8;
+                    ctx.fillStyle = '#10b981';
+                    ctx.shadowBlur = 6;
                     ctx.shadowColor = '#10b981';
                 } else {
-                    ctx.fillStyle = '#0ea5e9'; // Blu cian
-                    ctx.shadowBlur = 4;
+                    ctx.fillStyle = '#0ea5e9';
+                    ctx.shadowBlur = 3;
                     ctx.shadowColor = '#0ea5e9';
                 }
                 ctx.fill();
-                ctx.shadowBlur = 0; // Reset ombra per performance
+                ctx.shadowBlur = 0;
             }
         }
 
-        // Classe per le particelle delle "Esplosioni"
         class ExplosionParticle {
             constructor(x, y, isBig = false) {
                 this.x = x;
                 this.y = y;
                 const angle = Math.random() * Math.PI * 2;
-                const speed = Math.random() * (isBig ? 8 : 4) + 1;
+                const speed = Math.random() * (isBig ? 6 : 3) + 1;
                 this.speedX = Math.cos(angle) * speed;
                 this.speedY = Math.sin(angle) * speed;
-                this.size = Math.random() * 3 + 1;
+                this.size = Math.random() * 2.5 + 1;
                 this.alpha = 1;
-                this.decay = Math.random() * 0.02 + 0.015;
-                // Sfumature verde acido e neon elettrico
+                this.decay = Math.random() * 0.03 + 0.02;
                 this.color = Math.random() > 0.4 ? '#22c55e' : '#a3e635'; 
             }
             update() {
@@ -253,7 +245,7 @@
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fillStyle = this.color;
-                ctx.shadowBlur = 12;
+                ctx.shadowBlur = 8;
                 ctx.shadowColor = this.color;
                 ctx.fill();
                 ctx.restore();
@@ -261,7 +253,7 @@
         }
 
         function createExplosion(x, y, isBig = false) {
-            let count = isBig ? 25 : 6;
+            let count = isBig ? 15 : 4;
             for (let i = 0; i < count; i++) {
                 explosionsArray.push(new ExplosionParticle(x, y, isBig));
             }
@@ -278,47 +270,28 @@
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Gestione e disegno particelle fisse di sfondo
             for (let i = 0; i < particlesArray.length; i++) {
                 particlesArray[i].update();
                 particlesArray[i].draw();
 
-                // Connessioni di rete tra particelle vicine
                 for (let j = i; j < particlesArray.length; j++) {
                     const dx = particlesArray[i].x - particlesArray[j].x;
                     const dy = particlesArray[i].y - particlesArray[j].y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
-                    if (distance < 120) {
+                    if (distance < 100) {
                         ctx.beginPath();
                         ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
                         ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
-                        // Sfumatura linea tra cian e verde acido
                         ctx.strokeStyle = particlesArray[i].colorType > 0.6 
-                            ? `rgba(16, 185, 129, ${0.2 - distance/120})` 
-                            : `rgba(14, 165, 233, ${0.12 - distance/120})`;
-                        ctx.lineWidth = 0.6;
-                        ctx.stroke();
-                    }
-                }
-
-                // Interazione con il mouse (linee dinamiche verso il cursore)
-                if (mouse.x !== null && mouse.y !== null) {
-                    const mdx = particlesArray[i].x - mouse.x;
-                    const mdy = particlesArray[i].y - mouse.y;
-                    const mDistance = Math.sqrt(mdx * mdx + mdy * mdy);
-                    if (mDistance < mouse.radius) {
-                        ctx.beginPath();
-                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-                        ctx.lineTo(mouse.x, mouse.y);
-                        ctx.strokeStyle = `rgba(34, 197, 94, ${0.35 - mDistance/mouse.radius})`; // Verde acido focalizzato vicino al mouse
-                        ctx.lineWidth = 0.8;
+                            ? `rgba(16, 185, 129, ${0.15 - distance/100})` 
+                            : `rgba(14, 165, 233, ${0.1 - distance/100})`;
+                        ctx.lineWidth = 0.5;
                         ctx.stroke();
                     }
                 }
             }
 
-            // Gestione ed animazione delle esplosioni
             for (let k = explosionsArray.length - 1; k >= 0; k--) {
                 explosionsArray[k].update();
                 explosionsArray[k].draw();
@@ -330,25 +303,6 @@
             requestAnimationFrame(animateParticles);
         }
         animateParticles();
-
-
-        // --- EFFETTO 3D HEADER ---
-        const header = document.querySelector('header');
-
-        document.addEventListener('mousemove', (e) => {
-            const xPos = (window.innerWidth / 2 - e.clientX) / 50;
-            const yPos = (window.innerHeight / 2 - e.clientY) / 50;
-            header.style.transform = `rotateY(${-xPos}deg) rotateX(${yPos}deg)`;
-        });
-
-        document.addEventListener('mouseleave', () => {
-            header.style.transform = `rotateY(0deg) rotateX(0deg)`;
-            header.style.transition = 'transform 0.5s ease-in-out';
-        });
-
-        header.addEventListener('mouseenter', () => {
-            header.style.transition = 'transform 0.1s ease-out';
-        });
 
         // --- CARICAMENTO DINAMICO DELLE AUTO ---
         document.addEventListener("DOMContentLoaded", () => {
@@ -393,7 +347,6 @@
             container.innerHTML = htmlContent;
         });
 
-        // Gestione click sull'intera card
         function toggleCardClick(card, event) {
             if (event.target.closest('.btn-details') || event.target.closest('.cta-dropdown-btn')) {
                 return;
@@ -402,7 +355,6 @@
             toggleDetails(button, event);
         }
 
-        // Apertura/Chiusura menu a tendina dettagli auto
         function toggleDetails(button, event) {
             if (event) event.stopPropagation();
             const card = button.closest('.car-card');
@@ -425,7 +377,6 @@
             }
         }
 
-        // Selezione automatica auto nel form di contatto
         function selezionaAuto(nomeAuto, event) {
             if (event) event.stopPropagation();
             const inputVeicolo = document.getElementById('veicolo');
