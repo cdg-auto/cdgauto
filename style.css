@@ -157,6 +157,12 @@ nav ul li a:hover {
     font-family: 'Rajdhani', sans-serif;
     text-transform: uppercase;
     letter-spacing: -0.5px;
+    
+    /* OMBRA ACCENTUATA ED EFFETTO RILIEVO PROFONDO SOLO SUL TITOLO */
+    text-shadow: 
+        0 2px 0 rgba(255, 255, 255, 0.15),  /* Luce superiore per dare il rilievo 3D */
+        0 15px 35px rgba(0, 0, 0, 0.95),   /* Ombra scura profonda principale */
+        0 0 50px rgba(14, 165, 233, 0.35);  /* Bagliore neon cian accentuato */
 }
 
 .hero-content p {
@@ -164,6 +170,8 @@ nav ul li a:hover {
     color: var(--text-muted);
     margin-bottom: 30px;
     line-height: 1.6;
+    /* Leggera ombra anche sul paragrafo per staccare meglio dallo sfondo */
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
 }
 
 .hero-buttons {
@@ -318,7 +326,7 @@ nav ul li a:hover {
     line-height: 1.6;
 }
 
-/* SHOWROOM SECTION (Migliorata e graficamente curata) */
+/* SHOWROOM SECTION */
 .showroom {
     padding: 100px 8%;
     max-width: 1600px;
@@ -471,7 +479,7 @@ nav ul li a:hover {
     color: var(--accent);
 }
 
-/* STILE MENU A TENDINA DETTAGLI AUTO (Perfetto e reattivo) */
+/* STILE MENU A TENDINA DETTAGLI AUTO */
 .car-dropdown-content {
     max-height: 0;
     overflow: hidden;
