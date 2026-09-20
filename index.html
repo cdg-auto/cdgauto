@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CDG Auto -</title>
+    <title>CDG Auto - Importazione Diretta Germania</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -11,8 +11,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Collegamento al file CSS esterno -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* CANVAS PER SFONDO PARTICELLARE SCI-FI / ESPLOSIONI VERDE ACIDO */
+        #alien-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; /* Mantiene lo sfondo dietro tutti i contenuti */
+            pointer-events: none; /* Permette i click attraverso il canvas */
+            background-color: var(--bg-color, #0b0f19);
+        }
+    </style>
 </head>
 <body>
+
+<!-- SFONDO PARTICELLARE DINAMICO AVANZATO -->
+<canvas id="alien-particles"></canvas>
 
 <!-- HEADER -->
 <header id="header-3d">
@@ -131,9 +147,192 @@
    <!-- Includi prima il database delle auto -->
     <script src="cars.js"></script>
 
-    <!-- JAVASCRIPT PER EFFETTO 3D, APERTURA MENU E CARICAMENTO AUTO -->
+    <!-- JAVASCRIPT PER EFFETTO PARTICELLE ALIENE AVANZATO & ESPLOSIONI -->
     <script>
-        // Effetto 3D Header
+        // --- EFFETTO SFONDO PARTICELLARE SCI-FI / ESPLOSIONI VERDE ACIDO ---
+        const canvas = document.getElementById('alien-particles');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        let particlesArray = [];
+        let explosionsArray = [];
+        const numberOfParticles = 85; // Aumentate per maggiore densità
+
+        const mouse = {
+            x: null,
+            y: null,
+            radius: 150
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            
+            // Crea micro-esplosioni al passaggio rapido del mouse
+            if (Math.random() < 0.3) {
+                createExplosion(mouse.x, mouse.y);
+            }
+        });
+
+        window.addEventListener('click', (e) => {
+            // Esplosione intensa al click ovunque nella pagina
+            createExplosion(e.clientX, e.clientY, true);
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        // Classe per le particelle fluttuanti di sfondo
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.2 + 0.8;
+                this.speedX = (Math.random() - 0.5) * 1.0;
+                this.speedY = (Math.random() - 0.5) * 1.0;
+                // Alternanza di colori tra azzurro tech e verde acido
+                this.colorType = Math.random();
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                else if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                else if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                if (this.colorType > 0.6) {
+                    ctx.fillStyle = '#10b981'; // Verde acido brillante
+                    ctx.shadowBlur = 8;
+                    ctx.shadowColor = '#10b981';
+                } else {
+                    ctx.fillStyle = '#0ea5e9'; // Blu cian
+                    ctx.shadowBlur = 4;
+                    ctx.shadowColor = '#0ea5e9';
+                }
+                ctx.fill();
+                ctx.shadowBlur = 0; // Reset ombra per performance
+            }
+        }
+
+        // Classe per le particelle delle "Esplosioni"
+        class ExplosionParticle {
+            constructor(x, y, isBig = false) {
+                this.x = x;
+                this.y = y;
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * (isBig ? 8 : 4) + 1;
+                this.speedX = Math.cos(angle) * speed;
+                this.speedY = Math.sin(angle) * speed;
+                this.size = Math.random() * 3 + 1;
+                this.alpha = 1;
+                this.decay = Math.random() * 0.02 + 0.015;
+                // Sfumature verde acido e neon elettrico
+                this.color = Math.random() > 0.4 ? '#22c55e' : '#a3e635'; 
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.alpha -= this.decay;
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = Math.max(this.alpha, 0);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function createExplosion(x, y, isBig = false) {
+            let count = isBig ? 25 : 6;
+            for (let i = 0; i < count; i++) {
+                explosionsArray.push(new ExplosionParticle(x, y, isBig));
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Gestione e disegno particelle fisse di sfondo
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+
+                // Connessioni di rete tra particelle vicine
+                for (let j = i; j < particlesArray.length; j++) {
+                    const dx = particlesArray[i].x - particlesArray[j].x;
+                    const dy = particlesArray[i].y - particlesArray[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                        // Sfumatura linea tra cian e verde acido
+                        ctx.strokeStyle = particlesArray[i].colorType > 0.6 
+                            ? `rgba(16, 185, 129, ${0.2 - distance/120})` 
+                            : `rgba(14, 165, 233, ${0.12 - distance/120})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+
+                // Interazione con il mouse (linee dinamiche verso il cursore)
+                if (mouse.x !== null && mouse.y !== null) {
+                    const mdx = particlesArray[i].x - mouse.x;
+                    const mdy = particlesArray[i].y - mouse.y;
+                    const mDistance = Math.sqrt(mdx * mdx + mdy * mdy);
+                    if (mDistance < mouse.radius) {
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.strokeStyle = `rgba(34, 197, 94, ${0.35 - mDistance/mouse.radius})`; // Verde acido focalizzato vicino al mouse
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Gestione ed animazione delle esplosioni
+            for (let k = explosionsArray.length - 1; k >= 0; k--) {
+                explosionsArray[k].update();
+                explosionsArray[k].draw();
+                if (explosionsArray[k].alpha <= 0) {
+                    explosionsArray.splice(k, 1);
+                }
+            }
+
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+
+        // --- EFFETTO 3D HEADER ---
         const header = document.querySelector('header');
 
         document.addEventListener('mousemove', (e) => {
@@ -151,7 +350,7 @@
             header.style.transition = 'transform 0.1s ease-out';
         });
 
-        // Funzione di caricamento dinamico delle auto da cars.js
+        // --- CARICAMENTO DINAMICO DELLE AUTO ---
         document.addEventListener("DOMContentLoaded", () => {
             const container = document.getElementById('car-grid-container');
             if (!container || typeof carDatabase === 'undefined') return;
@@ -162,7 +361,7 @@
                 let specsList = car.specs.map(spec => `<li><i class="fa-solid fa-check"></i> ${spec}</li>`).join("");
 
                 htmlContent += `
-                    <div class="car-card">
+                    <div class="car-card" onclick="toggleCardClick(this, event)">
                         <div class="car-image-container">
                             <span class="car-badge">${car.badge}</span>
                             <img src="${car.image}" alt="${car.name}" class="car-image">
@@ -176,7 +375,7 @@
                             </div>
                             <div class="car-footer">
                                 <div class="car-price">${car.price}</div>
-                                <button class="btn-details" onclick="toggleDetails(this)">Dettagli</button>
+                                <button class="btn-details" onclick="toggleDetails(this, event)">Dettagli</button>
                             </div>
                         </div>
                         <div class="car-dropdown-content">
@@ -185,7 +384,7 @@
                                 <li><i class="fa-solid fa-check"></i> Provenienza: ${car.provenance}</li>
                                 ${specsList}
                             </ul>
-                            <a href="#contatti" class="cta-dropdown-btn" onclick="selezionaAuto('${car.name}')">Richiedi Info / Prenota</a>
+                            <a href="#contatti" class="cta-dropdown-btn" onclick="selezionaAuto('${car.name}', event)">Richiedi Info / Prenota</a>
                         </div>
                     </div>
                 `;
@@ -194,15 +393,26 @@
             container.innerHTML = htmlContent;
         });
 
-        // Funzione per aprire/chiudere il menu a tendina dei dettagli auto
-        function toggleDetails(button) {
+        // Gestione click sull'intera card
+        function toggleCardClick(card, event) {
+            if (event.target.closest('.btn-details') || event.target.closest('.cta-dropdown-btn')) {
+                return;
+            }
+            const button = card.querySelector('.btn-details');
+            toggleDetails(button, event);
+        }
+
+        // Apertura/Chiusura menu a tendina dettagli auto
+        function toggleDetails(button, event) {
+            if (event) event.stopPropagation();
             const card = button.closest('.car-card');
             const dropdown = card.querySelector('.car-dropdown-content');
             
             document.querySelectorAll('.car-dropdown-content').forEach(item => {
                 if(item !== dropdown) {
                     item.style.maxHeight = null;
-                    item.previousElementSibling.querySelector('.btn-details').textContent = "Dettagli";
+                    const otherCardBtn = item.closest('.car-card').querySelector('.btn-details');
+                    if(otherCardBtn) otherCardBtn.textContent = "Dettagli";
                 }
             });
 
@@ -215,10 +425,11 @@
             }
         }
 
-        // Funzione per selezionare automaticamente l'auto nel form di contatto
-        function selezionaAuto(nomeAuto) {
+        // Selezione automatica auto nel form di contatto
+        function selezionaAuto(nomeAuto, event) {
+            if (event) event.stopPropagation();
             const inputVeicolo = document.getElementById('veicolo');
-            inputVeicolo.value = nomeAuto;
+            if (inputVeicolo) inputVeicolo.value = nomeAuto;
         }
     </script>
 </body>
