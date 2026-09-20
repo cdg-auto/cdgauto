@@ -23,6 +23,56 @@
             pointer-events: none; /* Permette i click attraverso il canvas */
             background-color: var(--bg-color, #0b0f19);
         }
+
+        /* ICONE SOCIAL FISSE IN BASSO A DESTRA (MENO LUMINOSE / PIÙ ELEGANTI) */
+        .social-floating-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .social-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 22px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* WhatsApp: tonalità più sobria e meno luminosa */
+        .social-icon-btn.whatsapp {
+            background: #1faf55;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 12px rgba(31, 175, 85, 0.25);
+        }
+
+        .social-icon-btn.whatsapp:hover {
+            background: #25d366;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+            transform: scale(1.08) translateY(-2px);
+        }
+
+        /* Instagram: gradiente più tenue e meno acceso */
+        .social-icon-btn.instagram {
+            background: linear-gradient(135deg, #c13584, #bc2a8d, #833ab4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 12px rgba(131, 58, 180, 0.25);
+        }
+
+        .social-icon-btn.instagram:hover {
+            box-shadow: 0 0 15px rgba(193, 53, 132, 0.4);
+            transform: scale(1.08) translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -30,7 +80,19 @@
 <!-- SFONDO PARTICELLARE DINAMICO RIDOTTO -->
 <canvas id="alien-particles"></canvas>
 
-<!-- HEADER (Senza effetto movimento mouse) -->
+<!-- ICONE SOCIAL FISSE (MENO LUMINOSE) NELL'ANGOLO A DESTRA -->
+<div class="social-floating-container">
+    <!-- Sostituisci il link con il tuo numero WhatsApp (es. wa.me/393400000000) -->
+    <a href="https://wa.me/390000000000" target="_blank" class="social-icon-btn whatsapp" title="Scrivici su WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <!-- Sostituisci il link con il profilo Instagram -->
+    <a href="https://instagram.com/tuapagina" target="_blank" class="social-icon-btn instagram" title="Seguici su Instagram">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+</div>
+
+<!-- HEADER -->
 <header id="header-3d">
     <a href="#home" class="logo-link">
         <img src="logo.png" alt="CDGAuto.it Logo" class="site-logo">
@@ -159,7 +221,7 @@
 
         let particlesArray = [];
         let explosionsArray = [];
-        const numberOfParticles = 40; // Ridotte da 85 a 40 per un look più pulito
+        const numberOfParticles = 40;
 
         const mouse = {
             x: null,
@@ -171,7 +233,6 @@
             mouse.x = e.clientX;
             mouse.y = e.clientY;
             
-            // Frequenza ridotta per le micro-esplosioni al passaggio del mouse
             if (Math.random() < 0.1) {
                 createExplosion(mouse.x, mouse.y);
             }
